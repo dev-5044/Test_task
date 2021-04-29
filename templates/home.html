@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block container %}
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">PRODUCT</th>
+            <th scope="col">LIMIT</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">PRICE</th>            
+            <th scope="col">MA</th>
+            <th scope="col">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+              {% if i.status == 'CLOSE' %}
+                  <tr style="background-color: rgb(206, 200, 200)">
+              {% elif i.status == 'OPEN'%}
+                  <tr style="background-color: rgb(74, 228, 74)">
+              {% else %}
+                  <tr style="background-color: rgb(223, 30, 30)"> 
+              {% endif %}             
+            <td>{{ i.name }}</td>
+            <td>{{ i.product }}</td>
+            <td>{{ i.limit }}</td>
+            <td>{{ i.quantity }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.ma }}</td>
+            <td>{{ i.status }}</td>
+            <td><a href="{% url 'update' i.pk %}" style="color: black;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" >
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+            </a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% if not data %}
+          <a href="{% url 'create' %}" class="btn btn-primary">Create</a>
+      {% endif %}
+{% endblock container %}

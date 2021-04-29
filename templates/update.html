@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block container %}
+    
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">PRODUCT</th>
+            <th scope="col">LIMIT</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">PRICE</th>            
+            <th scope="col">MA</th>
+            <th scope="col">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+            <td>{{ object.name }}</td>
+            <td>{{ object.product }}</td>
+            <td><input class="form-control" type="number" name="limit" value="{{ object.limit }}" step="1e-8" required id="id_limit"></td>
+            <td><input class="form-control" type="number" name="quantity" value="{{ object.quantity }}" required id="id_quantity"></td>
+            <td>{{ object.price }}</td>
+            <td>{{ object.ma }}</td>
+            <td>{{ object.status }}</td>
+        </tbody>
+    </table>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock container %}
